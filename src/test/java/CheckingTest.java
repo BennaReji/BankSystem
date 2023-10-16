@@ -5,7 +5,7 @@ public class CheckingTest {
 
     @BeforeEach
     public void setUp() {
-        checking = new Checking();
+        checking = new Checking(2, 12345679);
     }
 
 }

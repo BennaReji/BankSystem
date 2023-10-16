@@ -3,8 +3,8 @@ public abstract class Account {
     private double apr;
     private int id;
 
-    public Account(double balance, double apr, int id) {
-        this.balance = balance;
+    public Account(double apr, int id) {
+        this.balance = 0;
         this.apr = apr;
         this.id = id;
     }
@@ -15,11 +15,11 @@ public abstract class Account {
 
     }
 
-    public void addMoney(double money) {
+    public void deposit(double money) {
         balance += money;
     }
 
-    public void takeMoney(double money) {
+    public void withdraw(double money) {
         if (balance > 0) {
             balance -= money;
             if (balance < 0) {

@@ -1,7 +1,10 @@
 public class CertificateDeposit extends Account {
 
-    public CertificateDeposit(double money, double apr, int id) {
-        super(money, apr, id);
+    public CertificateDeposit(double apr, int id, double initialBalance) {
+        super(apr, id);
+        if (initialBalance >= 0) {
+            deposit(initialBalance);
+        }
     }
 
 }

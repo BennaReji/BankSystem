@@ -4,45 +4,66 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class AccountTest {
+    public static final double DEPOSIT = 20;
+    public static final double WITHDRAW = 10;
+    public static final int ID = 12345678;
+    public static final double APR = 3.5;
     Account cd;
 
     @BeforeEach
     public void setUp() {
-        cd = new CertificateDeposit(20, 3.5, 12345678);
+        cd = new CertificateDeposit(APR, ID, 50);
 
     }
 
     @Test
-    public void deposit_20_dollars() {
-        cd.addMoney(10);
+    public void deposit_dollars_to_cd() {
+        cd.deposit(DEPOSIT);
+        double balance = cd.getBalance();
+        assertEquals(70, balance);
+    }
+
+    @Test
+    public void deposit_dollars_twice_to_cd() {
+        cd.deposit(DEPOSIT);
+        cd.deposit(DEPOSIT);
+        double balance = cd.getBalance();
+        assertEquals(90, balance);
+    }
+
+    @Test
+
+    public void withdraw_from_cd() {
+        cd.withdraw(WITHDRAW);
+        double balance = cd.getBalance();
+        assertEquals(40, balance);
+    }
+
+    @Test
+    public void withdraw_twice_from_cd() {
+        cd.withdraw(WITHDRAW);
+        cd.withdraw(WITHDRAW);
         double balance = cd.getBalance();
         assertEquals(30, balance);
     }
 
     @Test
-    public void withdraw_20_dollars() {
-        cd.takeMoney(10);
-        double balance = cd.getBalance();
-        assertEquals(10, balance);
-    }
-
-    @Test
     public void make_it_zero_balance_if_there_is_no_money_left() {
-        cd.takeMoney(20);
+        cd.withdraw(60);
         double balance = cd.getBalance();
         assertEquals(0, balance);
     }
 
     @Test
-    public void APR_value_for_cd() {
+    public void apr_value() {
         double aprValue = cd.getAPRValue();
-        assertEquals(3.5, aprValue);
+        assertEquals(APR, aprValue);
     }
 
     @Test
-    public void unique_Id_for_cd() {
+    public void unique_id() {
         int idNum = cd.getId();
-        assertEquals(12345678, idNum);
+        assertEquals(ID, idNum);
     }
 
 }
