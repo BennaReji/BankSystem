@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="AccountTest" tests="7" skipped="0" failures="0" errors="0" timestamp="2023-10-16T17:48:57" hostname="Bovass-MacBook-Pro-2.local" time="0.016">
+  <properties/>
+  <testcase name="apr_value()" classname="AccountTest" time="0.001"/>
+  <testcase name="unique_id()" classname="AccountTest" time="0.001"/>
+  <testcase name="deposit_dollars_to_cd()" classname="AccountTest" time="0.001"/>
+  <testcase name="withdraw_twice_from_cd()" classname="AccountTest" time="0.002"/>
+  <testcase name="withdraw_from_cd()" classname="AccountTest" time="0.001"/>
+  <testcase name="make_it_zero_balance_if_there_is_no_money_left()" classname="AccountTest" time="0.001"/>
+  <testcase name="deposit_dollars_twice_to_cd()" classname="AccountTest" time="0.002"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
