@@ -7,9 +7,9 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class BankTest {
     public static final double DEPOSIT = 30;
     public static final double WITHDRAW = 10;
-    public static final int ID_2 = 12345678;
+    public static final String ID_2 = "12345678";
     public static final double APR = 3.5;
-    public static final int ID = 12345679;
+    public static final String ID = "12345679";
 
 
     Bank bank;

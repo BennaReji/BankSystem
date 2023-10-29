@@ -6,21 +6,28 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 public class AccountTest {
     public static final double DEPOSIT = 20;
     public static final double WITHDRAW = 10;
-    public static final int ID = 12345678;
+    public static final String ID = "12345678";
+    public static final String ID_2 = "12345679";
     public static final double APR = 3.5;
+    public static final double INITIAL_BALANCE = 50;
     Account cd;
+    Account checking;
 
     @BeforeEach
     public void setUp() {
-        cd = new CertificateDeposit(APR, ID, 50);
+        cd = new CertificateDeposit(APR, ID, INITIAL_BALANCE);
+        checking = new Checking(APR, ID_2);
 
     }
 
     @Test
-    public void deposit_dollars_to_cd() {
+    public void deposit_dollars_to_cd_and_checking() {
         cd.deposit(DEPOSIT);
         double balance = cd.getBalance();
         assertEquals(70, balance);
+        checking.deposit(DEPOSIT);
+        double balance1 = checking.getBalance();
+        assertEquals(20, balance1);
     }
 
     @Test
@@ -62,7 +69,7 @@ public class AccountTest {
 
     @Test
     public void unique_id() {
-        int idNum = cd.getId();
+        String idNum = cd.getId();
         assertEquals(ID, idNum);
     }
 

@@ -5,7 +5,7 @@ public class SavingsTest {
 
     @BeforeEach
     public void setUp() {
-        savings = new Savings(3, 12345679);
+        savings = new Savings(3, "12345679");
     }
 
 }

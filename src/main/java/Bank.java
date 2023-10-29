@@ -2,13 +2,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Bank {
-    private Map<Integer, Account> accounts;
+    private Map<String, Account> accounts;
 
     Bank() {
         accounts = new HashMap<>();
     }
 
-    public Map<Integer, Account> getAccounts() {
+    public Map<String, Account> getAccounts() {
         return accounts;
     }
 

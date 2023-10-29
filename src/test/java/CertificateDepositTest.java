@@ -8,7 +8,7 @@ public class CertificateDepositTest {
 
     @BeforeEach
     public void setUp() {
-        cd = new CertificateDeposit(2, 12345678, 30);
+        cd = new CertificateDeposit(2, "12345678", 30);
     }
 
     @Test

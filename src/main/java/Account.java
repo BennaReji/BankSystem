@@ -1,9 +1,9 @@
 public abstract class Account {
     private double balance;
     private double apr;
-    private int id;
+    private String id;
 
-    public Account(double apr, int id) {
+    public Account(double apr, String id) {
         this.balance = 0;
         this.apr = apr;
         this.id = id;
@@ -33,7 +33,7 @@ public abstract class Account {
         return apr;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
 
     }
