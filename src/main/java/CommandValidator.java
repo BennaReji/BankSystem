@@ -1,9 +1,12 @@
 public class CommandValidator {
     private AccountValidator accountValidator;
+    private DepositValidator depositValidator;
 
 
     public CommandValidator() {
         accountValidator = new AccountValidator();
+        depositValidator = new DepositValidator();
+
     }
 
     public boolean validate(String command) {
@@ -16,6 +19,8 @@ public class CommandValidator {
 
         if (commandWord.equals("create")) {
             return accountValidator.validate(command);
+        } else if (commandWord.equals("deposit")) {
+            return depositValidator.validate(command);
         } else {
             return false;
         }

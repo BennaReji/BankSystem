@@ -24,4 +24,16 @@ public class CommandValidatorTest {
         boolean actual = commandValidator.validate("checking 12345678 2.0");
         assertFalse(actual);
     }
+
+    @Test
+    void valid_deposit() {
+        boolean actual = commandValidator.validate("deposit 12345678 100");
+        assertTrue(actual);
+    }
+
+    @Test
+    void invalid_deposit() {
+        boolean actual = commandValidator.validate("12345678 100");
+        assertFalse(actual);
+    }
 }

@@ -48,4 +48,10 @@ public class DepositValidatorTest {
         assertFalse(actual);
     }
 
+    @Test
+    void case_insensitivity() {
+        boolean actual = depositValidator.validate("Deposit 12345678 100");
+        assertTrue(actual);
+    }
+
 }
