@@ -53,4 +53,13 @@ public class MasterControlTest {
         assertEquals("depositt 12345678 100", actual.get(1));
     }
 
+    @Test
+    void invalid_to_create_accounts_with_same_ID() {
+        input.add("create checking 12345678 1.0");
+        input.add("create checking 12345678 1.0");
+        List<String> actual = masterControl.start(input);
+
+        assertSingleCommand("create checking 12345678 1.0", actual);
+    }
+
 }

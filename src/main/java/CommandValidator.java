@@ -1,10 +1,12 @@
 public class CommandValidator {
+    private final Bank bank;
     private AccountValidator accountValidator;
     private DepositValidator depositValidator;
 
 
-    public CommandValidator() {
-        accountValidator = new AccountValidator();
+    public CommandValidator(Bank bank) {
+        this.bank = bank;
+        accountValidator = new AccountValidator(bank);
         depositValidator = new DepositValidator();
 
     }

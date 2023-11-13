@@ -1,4 +1,10 @@
 public class AccountValidator {
+    private Bank bank;
+
+    public AccountValidator(Bank bank) {
+        this.bank = bank;
+    }
+
     public boolean validate(String command) {
         String[] parts = command.split(" ");
         if (parts.length < 4) {
@@ -26,7 +32,7 @@ public class AccountValidator {
             return false;
         }
 
-        if (!isValidAccountNumber(idNumber)) {
+        if (!isValidAccountNumber(idNumber) || bank.getAccounts().containsKey(idNumber)) {
             return false;
         }
 

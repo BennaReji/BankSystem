@@ -6,11 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandValidatorTest {
     CommandValidator commandValidator;
-
+    private Bank bank;
 
     @BeforeEach
     void setUp() {
-        commandValidator = new CommandValidator();
+        bank = new Bank();
+        commandValidator = new CommandValidator(bank);
     }
 
     @Test

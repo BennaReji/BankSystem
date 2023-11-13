@@ -6,10 +6,12 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class AccountValidatorTest {
     AccountValidator accountValidator;
+    Bank bank;
 
     @BeforeEach
     void setUp() {
-        accountValidator = new AccountValidator();
+        bank = new Bank();
+        accountValidator = new AccountValidator(bank);
     }
 
     @Test
