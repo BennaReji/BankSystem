@@ -1,3 +1,5 @@
+package banking;
+
 public class CommandProcessor {
     private Bank bank;
 
@@ -7,7 +9,7 @@ public class CommandProcessor {
 
     public void processCommand(String command) {
         String[] parts = command.split(" ");
-        String action = parts[0];
+        String action = parts[0].toLowerCase();
 
         switch (action) {
             case "create":
@@ -22,19 +24,22 @@ public class CommandProcessor {
     }
 
     private void processCreateCommand(String[] parts) {
+        String accountType = parts[1].toLowerCase();
         String accountId = parts[2];
+
         double apr = Double.parseDouble(parts[3]);
 
-        Account account;
-        if ("12345678".equals(accountId)) {
-            account = new Checking(apr, accountId);
-        } else if ("12345679".equals(accountId)) {
-            account = new Savings(apr, accountId);
-        } else {
-            return;
-        }
 
-        bank.addAccount(account);
+        switch (accountType) {
+            case "checking":
+                bank.addAccount(new Checking(apr, accountId));
+                break;
+            case "savings":
+                bank.addAccount(new Savings(apr, accountId));
+                break;
+
+            // Handle other account types if needed
+        }
     }
 
     private void processDepositCommand(String[] parts) {
@@ -47,3 +52,4 @@ public class CommandProcessor {
         }
     }
 }
+

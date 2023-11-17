@@ -1,4 +1,13 @@
+package banking;
+
 public class DepositValidator {
+    private Bank bank;
+
+    public DepositValidator(Bank bank) {
+        this.bank = bank;
+    }
+
+
     public boolean validate(String command) {
         String[] parts = command.split(" ");
         if (parts.length < 3) {
@@ -11,6 +20,7 @@ public class DepositValidator {
             return false;
         }
 
+
         String idNumber = parts[1];
         String depositAmount = parts[2];
 
@@ -18,8 +28,11 @@ public class DepositValidator {
             return false;
         }
 
-        return isValidDepositAmount(depositAmount);
+        if (bank.checkIdExists(idNumber)) {
+            return false;
+        }
 
+        return isValidDepositAmount(depositAmount);
     }
 
     private boolean isValidDepositAmount(String depositAmount) {

@@ -1,3 +1,5 @@
+package banking;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -10,13 +12,14 @@ public class AccountValidatorTest {
 
     @BeforeEach
     void setUp() {
+
         bank = new Bank();
         accountValidator = new AccountValidator(bank);
     }
 
     @Test
     void valid_checking_account() {
-        boolean actual = accountValidator.validate("create checking 12345678 2.0");
+        boolean actual = accountValidator.validate("create checking 12345699 2.0");
         assertTrue(actual);
     }
 
@@ -94,7 +97,7 @@ public class AccountValidatorTest {
 
     @Test
     void case_insensitivity() {
-        boolean actual = accountValidator.validate("Create Checking 12345678 2.0");
+        boolean actual = accountValidator.validate("Create Checking 12345699 2.0");
         assertTrue(actual);
     }
 }

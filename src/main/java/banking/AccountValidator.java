@@ -1,3 +1,5 @@
+package banking;
+
 public class AccountValidator {
     private Bank bank;
 
@@ -32,7 +34,10 @@ public class AccountValidator {
             return false;
         }
 
-        if (!isValidAccountNumber(idNumber) || bank.getAccounts().containsKey(idNumber)) {
+        if (!isValidAccountNumber(idNumber)) {
+            return false;
+        }
+        if (bank.checkIdExists(idNumber)) {
             return false;
         }
 

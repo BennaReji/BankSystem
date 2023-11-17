@@ -1,3 +1,5 @@
+package banking;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -6,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CommandValidatorTest {
     CommandValidator commandValidator;
-    private Bank bank;
+    Bank bank;
 
     @BeforeEach
     void setUp() {

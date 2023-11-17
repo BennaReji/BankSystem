@@ -1,3 +1,5 @@
+package banking;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -14,6 +16,10 @@ public class Bank {
 
     public void addAccount(Account account) {
         accounts.put(account.getId(), account);
+    }
+
+    public boolean checkIdExists(String accountId) {
+        return (accounts.containsKey(accountId));
     }
 
 

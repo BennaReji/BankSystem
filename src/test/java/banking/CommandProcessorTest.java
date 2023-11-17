@@ -1,3 +1,5 @@
+package banking;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +20,7 @@ public class CommandProcessorTest {
     void check_bank_has_checking() {
         commandProcessor.processCommand("create checking 12345678 1.0");
 
-        assertTrue(bank.getAccounts().containsKey("12345678"));
+        assertTrue(bank.checkIdExists("12345678"));
         assertEquals("12345678", bank.getAccounts().get("12345678").getId());
         assertEquals(1.0, bank.getAccounts().get("12345678").getAPRValue());
     }

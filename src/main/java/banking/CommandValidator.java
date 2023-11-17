@@ -1,13 +1,13 @@
+package banking;
+
 public class CommandValidator {
-    private final Bank bank;
     private AccountValidator accountValidator;
     private DepositValidator depositValidator;
 
 
     public CommandValidator(Bank bank) {
-        this.bank = bank;
         accountValidator = new AccountValidator(bank);
-        depositValidator = new DepositValidator();
+        depositValidator = new DepositValidator(bank);
 
     }
 

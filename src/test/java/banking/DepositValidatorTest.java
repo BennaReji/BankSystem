@@ -1,3 +1,5 @@
+package banking;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -5,11 +7,13 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DepositValidatorTest {
+    Bank bank;
     DepositValidator depositValidator;
 
     @BeforeEach
     void setUp() {
-        depositValidator = new DepositValidator();
+        bank = new Bank();
+        depositValidator = new DepositValidator(bank);
     }
 
     @Test
