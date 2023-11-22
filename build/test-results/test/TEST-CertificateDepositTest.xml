@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="CertificateDepositTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2023-10-16T17:48:57" hostname="Bovass-MacBook-Pro-2.local" time="0.038">
-  <properties/>
-  <testcase name="cd_created_with_specified_amount_of_balance()" classname="CertificateDepositTest" time="0.038"/>
-  <system-out><![CDATA[]]></system-out>
-  <system-err><![CDATA[]]></system-err>
-</testsuite>
