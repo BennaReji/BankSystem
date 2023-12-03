@@ -29,6 +29,9 @@ public class AccountValidator {
         if (accountType.equals("cd") && parts.length < 5) {
             return false;
         }
+        if ((accountType.equals("checking") || accountType.equals("savings")) && parts.length > 4) {
+            return false;
+        }
 
         if (accountType.equals("cd") && !isValidInitialBalance(parts[4])) {
             return false;
@@ -68,3 +71,4 @@ public class AccountValidator {
         return false;
     }
 }
+

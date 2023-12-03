@@ -64,4 +64,22 @@ public class MasterControlTest {
         assertSingleCommand("create checking 13345578 2.0", actual);
     }
 
+    @Test
+    void check_if_checking_does_not_allow_initial_balance() {
+        input.add("create checking 12345666 2.0 20");
+        List<String> actual = masterControl.start(input);
+
+        assertSingleCommand("create checking 12345666 2.0 20", actual);
+
+    }
+
+    @Test
+    void check_if_savings_does_not_allow_initial_balance() {
+        input.add("create savings 12345679 2.0 20");
+        List<String> actual = masterControl.start(input);
+        assertSingleCommand("create savings 12345679 2.0 20", actual);
+
+    }
+
+
 }

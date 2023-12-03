@@ -12,8 +12,9 @@ public class AccountValidatorTest {
 
     @BeforeEach
     void setUp() {
-
         bank = new Bank();
+
+
         accountValidator = new AccountValidator(bank);
     }
 
@@ -99,5 +100,23 @@ public class AccountValidatorTest {
     void case_insensitivity() {
         boolean actual = accountValidator.validate("Create Checking 12345699 2.0");
         assertTrue(actual);
+    }
+
+    @Test
+    void check_if_cd_accounts_can_not_be_created_without_initial_balance() {
+        boolean actual = accountValidator.validate("create cd 12345876 2.5");
+        assertFalse(actual);
+    }
+
+    @Test
+    void check_if_checking_does_not_allow_initial_balance() {
+        boolean actual = accountValidator.validate("create checking 12345666 2.0 20");
+        assertFalse(actual);
+    }
+
+    @Test
+    void check_if_savings_does_not_allow_initial_balance() {
+        boolean actual = accountValidator.validate("create savings 12345676 2.0 20");
+        assertFalse(actual);
     }
 }
