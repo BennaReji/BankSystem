@@ -38,7 +38,7 @@ public class CommandProcessor {
                 bank.addAccount(new Savings(apr, accountId));
                 break;
 
-            // Handle other account types if needed
+
         }
     }
 

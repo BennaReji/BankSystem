@@ -14,6 +14,7 @@ public class StoreCommands {
         invalidCommands.add(command);
     }
 
+
     public List<String> getAllInvalidCommands() {
         return new ArrayList<>(invalidCommands);
     }

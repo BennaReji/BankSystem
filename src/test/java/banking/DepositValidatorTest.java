@@ -14,8 +14,9 @@ public class DepositValidatorTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
+        Checking checking = new Checking(2.0, "12345678");
+        bank.addAccount(checking);
         depositValidator = new DepositValidator(bank);
-
     }
 
     @Test
@@ -26,7 +27,7 @@ public class DepositValidatorTest {
 
     @Test
     void deposit_above_maximum() {
-        boolean actual = depositValidator.validate("deposit 12345678 30001");
+        boolean actual = depositValidator.validate("deposit 12345678 1001");
         assertFalse(actual);
     }
 

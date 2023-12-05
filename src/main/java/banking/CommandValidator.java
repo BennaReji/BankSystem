@@ -1,14 +1,22 @@
 package banking;
 
-public class CommandValidator {
+import java.util.HashMap;
 
-    private AccountValidator accountValidator;
-    private DepositValidator depositValidator;
+public class CommandValidator {
+    HashMap<String, CommandValidator> commandValidatorMap;
+    private Bank bank;
 
     public CommandValidator(Bank bank) {
-        accountValidator = new AccountValidator(bank);
-        depositValidator = new DepositValidator(bank);
+        this.bank = bank;
+        commandValidatorMap = new HashMap<String, CommandValidator>();
+        commandValidatorMap.put("create", new AccountValidator(bank));
+        commandValidatorMap.put("deposit", new DepositValidator(bank));
+        commandValidatorMap.put("withdraw", new WithdrawValidator(bank));
     }
+
+    public CommandValidator() {
+    }
+
 
     public boolean validate(String command) {
         String[] parts = command.split(" ");
@@ -16,12 +24,14 @@ public class CommandValidator {
             return false;
         }
         String commandWord = parts[0].toLowerCase();
-        if (commandWord.equals("create")) {
-            return accountValidator.validate(command);
-        } else if (commandWord.equals("deposit")) {
-            return depositValidator.validate(command);
+
+        if (commandValidatorMap.containsKey(commandWord)) {
+            CommandValidator validator = commandValidatorMap.get(commandWord);
+            return validator.validate(command);
+
         } else {
             return false;
         }
     }
+
 }

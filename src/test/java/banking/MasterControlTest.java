@@ -18,6 +18,7 @@ public class MasterControlTest {
         input = new ArrayList<>();
         Bank bank = new Bank();
         masterControl = new MasterControl(new CommandValidator(bank), new CommandProcessor(bank), new StoreCommands());
+
     }
 
     @Test
@@ -59,6 +60,7 @@ public class MasterControlTest {
     void invalid_to_create_accounts_with_same_ID() {
         input.add("create checking 13345578 2.0");
         input.add("create checking 13345578 2.0");
+
         List<String> actual = masterControl.start(input);
 
         assertSingleCommand("create checking 13345578 2.0", actual);

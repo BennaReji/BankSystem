@@ -13,8 +13,6 @@ public class AccountValidatorTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
-
-
         accountValidator = new AccountValidator(bank);
     }
 
@@ -23,6 +21,7 @@ public class AccountValidatorTest {
         boolean actual = accountValidator.validate("create checking 12345699 2.0");
         assertTrue(actual);
     }
+
 
     @Test
     void valid_savings_account() {

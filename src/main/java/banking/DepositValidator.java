@@ -1,16 +1,16 @@
 package banking;
 
-public class DepositValidator {
+public class DepositValidator extends CommandValidator {
     private Bank bank;
 
     public DepositValidator(Bank bank) {
         this.bank = bank;
     }
 
-
+    @Override
     public boolean validate(String command) {
         String[] parts = command.split(" ");
-        if (parts.length < 3) {
+        if (parts.length != 3) {
             return false;
         }
 
@@ -28,20 +28,29 @@ public class DepositValidator {
             return false;
         }
 
-        if (bank.checkIdExists(idNumber)) {
+        if (!bank.checkIdExists(idNumber)) {
             return false;
         }
 
-        return isValidDepositAmount(depositAmount);
+        Account account = bank.getAccounts().get(idNumber);
+
+        if (account.canDeposit()) {
+            double amount = Double.parseDouble(depositAmount);
+
+            if (amount < 0) {
+                return false; // Cannot deposit a negative amount
+            }
+
+            if (!account.canDepositAmount(amount)) {
+                return false; // Exceeds maximum deposit for the account
+            }
+
+            return true; // Valid deposit command
+        }
+
+        return false; // Cannot deposit into a CD account
     }
 
-    private boolean isValidDepositAmount(String depositAmount) {
-        double numberAmount = Double.parseDouble(depositAmount);
-        if (numberAmount > 0 && numberAmount <= 3000) {
-            return true;
-        }
-        return false;
-    }
 
     private boolean isValidAccountNumber(String idNumber) {
         return idNumber.matches("\\d{8}");

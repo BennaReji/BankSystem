@@ -9,4 +9,21 @@ public class CertificateDeposit extends Account {
         }
     }
 
+    @Override
+    public boolean canDeposit() {
+        return false;
+    }
+
+    @Override
+    public boolean canDepositAmount(double amount) {
+        return false;
+    }
+
+    @Override
+    public boolean withdrawRange(double amount) {
+        if (amount <= getBalance()) {
+            return true;
+        }
+        return false;
+    }
 }

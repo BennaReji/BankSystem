@@ -13,6 +13,10 @@ public class CommandValidatorTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
+        Checking checking = new Checking(2.0, "12345677");
+        bank.addAccount(checking);
+
+
         commandValidator = new CommandValidator(bank);
     }
 
@@ -30,7 +34,7 @@ public class CommandValidatorTest {
 
     @Test
     void valid_deposit() {
-        boolean actual = commandValidator.validate("deposit 12345678 100");
+        boolean actual = commandValidator.validate("deposit 12345677 1000");
         assertTrue(actual);
     }
 

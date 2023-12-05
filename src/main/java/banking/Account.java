@@ -40,5 +40,11 @@ public abstract class Account {
 
     }
 
+    public abstract boolean canDeposit();
+
+    public abstract boolean canDepositAmount(double amount);
+
+    public abstract boolean withdrawRange(double amount);
+
 
 }
