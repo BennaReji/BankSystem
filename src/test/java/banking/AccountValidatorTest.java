@@ -13,6 +13,7 @@ public class AccountValidatorTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
+
         accountValidator = new AccountValidator(bank);
     }
 

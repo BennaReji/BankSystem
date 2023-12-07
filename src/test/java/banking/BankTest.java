@@ -22,8 +22,8 @@ public class BankTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
-        account1 = new Checking(APR, ID);
-        account2 = new Savings(APR, ID_2);
+        account1 = new Checking(ID, APR);
+        account2 = new Savings(ID_2, APR);
     }
 
     @Test

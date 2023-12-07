@@ -10,7 +10,7 @@ public class CertificateDepositTest {
 
     @BeforeEach
     public void setUp() {
-        cd = new CertificateDeposit(2, "12345678", 1000);
+        cd = new CertificateDeposit("12345678", 2.0, 1000);
     }
 
     @Test

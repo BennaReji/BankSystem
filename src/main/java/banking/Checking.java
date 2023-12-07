@@ -1,8 +1,8 @@
 package banking;
 
 public class Checking extends Account {
-    public Checking(double apr, String id) {
-        super(apr, id);
+    public Checking(String id, double apr) {
+        super(id, apr);
     }
 
     @Override

@@ -13,7 +13,7 @@ public class CommandValidatorTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
-        Checking checking = new Checking(2.0, "12345677");
+        Checking checking = new Checking("12345677", 2.0);
         bank.addAccount(checking);
 
 

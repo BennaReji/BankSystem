@@ -14,7 +14,7 @@ public class DepositValidatorTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
-        Checking checking = new Checking(2.0, "12345678");
+        Checking checking = new Checking("12345678", 2.0);
         bank.addAccount(checking);
         depositValidator = new DepositValidator(bank);
     }

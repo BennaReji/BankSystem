@@ -17,8 +17,8 @@ public class AccountTest {
 
     @BeforeEach
     public void setUp() {
-        cd = new CertificateDeposit(APR, ID, INITIAL_BALANCE);
-        checking = new Checking(APR, ID_2);
+        cd = new CertificateDeposit(ID, APR, INITIAL_BALANCE);
+        checking = new Checking(ID_2, APR);
 
 
     }

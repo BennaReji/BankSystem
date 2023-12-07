@@ -2,8 +2,8 @@ package banking;
 
 public class CertificateDeposit extends Account {
 
-    public CertificateDeposit(double apr, String id, double initialBalance) {
-        super(apr, id);
+    public CertificateDeposit(String id, double apr, double initialBalance) {
+        super(id, apr);
         if (initialBalance >= 1000) {
             deposit(initialBalance);
         }

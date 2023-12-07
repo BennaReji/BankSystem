@@ -18,7 +18,8 @@ public class CommandProcessor {
             case "deposit":
                 processDepositCommand(parts);
                 break;
-            default:
+            case "withdraw":
+                processWithdrawCommand(parts);
                 break;
         }
     }
@@ -32,10 +33,18 @@ public class CommandProcessor {
 
         switch (accountType) {
             case "checking":
-                bank.addAccount(new Checking(apr, accountId));
+                bank.addAccount(new Checking(accountId, apr));
                 break;
             case "savings":
-                bank.addAccount(new Savings(apr, accountId));
+                bank.addAccount(new Savings(accountId, apr));
+                break;
+            case "cd":
+                if (parts.length >= 5) {
+                    double initialBalance = Double.parseDouble(parts[4]);
+                    bank.addAccount(new CertificateDeposit(accountId, apr, initialBalance));
+                } else {
+                    throw new IllegalArgumentException("Missing initial balance for CD account creation");
+                }
                 break;
 
 
@@ -49,6 +58,16 @@ public class CommandProcessor {
         Account account = bank.getAccounts().get(accountId);
         if (account != null) {
             account.deposit(amount);
+        }
+    }
+
+    private void processWithdrawCommand(String[] parts) {
+        String accountId = parts[1];
+        double amount = Double.parseDouble(parts[2]);
+
+        Account account = bank.getAccounts().get(accountId);
+        if (account != null) {
+            account.withdraw(amount);
         }
     }
 }

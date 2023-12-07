@@ -26,6 +26,7 @@ public class CommandValidator {
         String commandWord = parts[0].toLowerCase();
 
         if (commandValidatorMap.containsKey(commandWord)) {
+
             CommandValidator validator = commandValidatorMap.get(commandWord);
             return validator.validate(command);
 

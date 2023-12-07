@@ -38,17 +38,17 @@ public class DepositValidator extends CommandValidator {
             double amount = Double.parseDouble(depositAmount);
 
             if (amount < 0) {
-                return false; // Cannot deposit a negative amount
+                return false;
             }
 
             if (!account.canDepositAmount(amount)) {
-                return false; // Exceeds maximum deposit for the account
+                return false;
             }
 
-            return true; // Valid deposit command
+            return true;
         }
 
-        return false; // Cannot deposit into a CD account
+        return false;
     }
 
 

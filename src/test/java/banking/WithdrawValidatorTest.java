@@ -14,11 +14,11 @@ public class WithdrawValidatorTest {
     @BeforeEach
     void setUp() {
         bank = new Bank();
-        Checking checking = new Checking(2.0, "12345678");
+        Checking checking = new Checking("12345678", 2.0);
         bank.addAccount(checking);
-        Savings savings = new Savings(2.0, "12345679");
+        Savings savings = new Savings("12345679", 2.0);
         bank.addAccount(savings);
-        CertificateDeposit cd = new CertificateDeposit(2.0, "12345687", 1222);
+        CertificateDeposit cd = new CertificateDeposit("12345687", 2.0, 1222);
         bank.addAccount(cd);
         withdrawValidator = new WithdrawValidator(bank);
 
