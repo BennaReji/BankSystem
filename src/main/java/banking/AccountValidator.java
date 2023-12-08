@@ -50,14 +50,6 @@ public class AccountValidator extends CommandValidator {
     }
 
 
-    private boolean isValidAccountType(String accountType) {
-        return accountType.equals("cd") || accountType.equals("checking") || accountType.equals("savings");
-    }
-
-    private boolean isValidAccountNumber(String idNumber) {
-        return idNumber.matches("\\d{8}");
-    }
-
     private boolean isValidAPR(String apr) {
         double numberApr = Double.parseDouble(apr);
         if (numberApr >= 1.0 && numberApr <= 10.0) {

@@ -35,4 +35,13 @@ public class CommandValidator {
         }
     }
 
+    public boolean isValidAccountType(String accountType) {
+        return accountType.equals("cd") || accountType.equals("checking") || accountType.equals("savings");
+    }
+
+    public boolean isValidAccountNumber(String idNumber) {
+        return idNumber.matches("\\d{8}");
+    }
+
+
 }

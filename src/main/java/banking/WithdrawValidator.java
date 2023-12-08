@@ -33,8 +33,6 @@ public class WithdrawValidator extends CommandValidator {
         return account.withdrawRange(amount);
     }
 
-    private boolean isValidAccountNumber(String idNumber) {
-        return idNumber.matches("\\d{8}");
-    }
+
 }
 

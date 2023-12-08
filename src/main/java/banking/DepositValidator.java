@@ -52,8 +52,5 @@ public class DepositValidator extends CommandValidator {
     }
 
 
-    private boolean isValidAccountNumber(String idNumber) {
-        return idNumber.matches("\\d{8}");
-    }
 }
 
