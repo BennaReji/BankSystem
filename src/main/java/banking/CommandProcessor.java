@@ -21,8 +21,11 @@ public class CommandProcessor {
             case "withdraw":
                 processWithdrawCommand(parts);
                 break;
+            case "transfer":
+                processTransferCommand(parts);
         }
     }
+
 
     private void processCreateCommand(String[] parts) {
         String accountType = parts[1].toLowerCase();
@@ -68,6 +71,22 @@ public class CommandProcessor {
         Account account = bank.getAccounts().get(accountId);
         if (account != null) {
             account.withdraw(amount);
+        }
+    }
+
+    private void processTransferCommand(String[] parts) {
+        String fromAccountId = parts[1];
+        String toAccountId = parts[2];
+        double amount = Double.parseDouble(parts[3]);
+
+        Account fromAccount = bank.getAccounts().get(fromAccountId);
+        Account toAccount = bank.getAccounts().get(toAccountId);
+
+        double actualTransferAmount = Math.min(fromAccount.getBalance(), amount);
+
+        if (fromAccount.withdrawRange(actualTransferAmount)) {
+            fromAccount.withdraw(actualTransferAmount);
+            toAccount.deposit(actualTransferAmount);
         }
     }
 }

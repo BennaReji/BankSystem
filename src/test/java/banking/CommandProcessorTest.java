@@ -84,4 +84,15 @@ public class CommandProcessorTest {
         assertEquals(100, bank.getAccounts().get("12345678").getBalance());
     }
 
+    @Test
+    void check_if_transfer_can_happen_between_accounts() {
+        commandProcessor.processCommand("create checking 12345678 1.0");
+        commandProcessor.processCommand("create savings 12345679 1.0");
+        commandProcessor.processCommand("deposit 12345678 1000");
+        commandProcessor.processCommand("transfer 12345678 12345679 400");
+
+        assertEquals(600, bank.getAccounts().get("12345678").getBalance());
+        assertEquals(400, bank.getAccounts().get("12345679").getBalance());
+    }
+
 }
