@@ -5,9 +5,11 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class StoreCommandsTest {
+    Bank bank;
 
     @Test
     void store_invalid_command() {
+        bank = new Bank();
         StoreCommands storeCommands = new StoreCommands();
 
         storeCommands.addInvalidCommand("create 12345678 2.0");

@@ -23,7 +23,13 @@ public class CommandProcessor {
                 break;
             case "transfer":
                 processTransferCommand(parts);
+                break;
+            case "pass":
+                passTimeProcessor(parts);
+                break;
+
         }
+
     }
 
 
@@ -88,6 +94,21 @@ public class CommandProcessor {
             fromAccount.withdraw(actualTransferAmount);
             toAccount.deposit(actualTransferAmount);
         }
+
+    }
+
+    private void passTimeProcessor(String[] parts) {
+        int months = Integer.parseInt(parts[1]);
+
+        PassTimeProcessor passTimeProcessor = new PassTimeProcessor(bank);
+        passTimeProcessor.passTime(months);
+
+    }
+
+
+    public Bank getBank() {
+        return bank;
     }
 }
+
 
