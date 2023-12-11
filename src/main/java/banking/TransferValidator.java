@@ -34,6 +34,9 @@ public class TransferValidator extends CommandValidator {
         if (fromAccount == null || toAccount == null) {
             return false;
         }
+        if (fromAccount == toAccount) {
+            return false;
+        }
 
         if (fromAccount.getClass() == CertificateDeposit.class || toAccount.getClass() == CertificateDeposit.class) {
             return false;

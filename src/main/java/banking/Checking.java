@@ -15,8 +15,19 @@ public class Checking extends Account {
         return amount <= 1000;
     }
 
+
     @Override
     public boolean withdrawRange(double amount) {
         return amount <= 400;
+    }
+
+    @Override
+    public double calculateInterest(double balance, double monthlyAPR, Account account) {
+        return balance * monthlyAPR;
+    }
+
+    @Override
+    public String getAccountType() {
+        return "Checking";
     }
 }

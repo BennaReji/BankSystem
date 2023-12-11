@@ -52,7 +52,7 @@ public class AccountValidator extends CommandValidator {
 
     private boolean isValidAPR(String apr) {
         double numberApr = Double.parseDouble(apr);
-        if (numberApr >= 1.0 && numberApr <= 10.0) {
+        if (numberApr > 0 && numberApr <= 10.0) {
             return true;
         }
         return false;

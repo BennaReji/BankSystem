@@ -13,6 +13,7 @@ public class CommandValidator {
         commandValidatorMap.put("deposit", new DepositValidator(bank));
         commandValidatorMap.put("withdraw", new WithdrawValidator(bank));
         commandValidatorMap.put("transfer", new TransferValidator(bank));
+        commandValidatorMap.put("pass", new PassTimeValidator());
     }
 
     public CommandValidator() {

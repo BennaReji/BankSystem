@@ -18,6 +18,7 @@ public class WithdrawValidatorTest {
         bank.addAccount(checking);
         Savings savings = new Savings("12345679", 2.0);
         bank.addAccount(savings);
+
         CertificateDeposit cd = new CertificateDeposit("12345687", 2.0, 1222);
         bank.addAccount(cd);
         withdrawValidator = new WithdrawValidator(bank);
@@ -68,9 +69,15 @@ public class WithdrawValidatorTest {
     }
 
     @Test
-    void valid_withdraw_from_cd() {
+    void invalid_withdraw_from_cd() {
         boolean actual = withdrawValidator.validate("withdraw 12345687 1222");
-        assertTrue(actual);
+        assertFalse(actual);
+    }
+
+    @Test
+    void invalid_withdraw_twice_from_savings() {
+        assertTrue(withdrawValidator.validate("withdraw 12345679 200"));
+        assertFalse(withdrawValidator.validate("withdraw 12345679 200"));
     }
 }
 

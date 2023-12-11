@@ -4,6 +4,7 @@ public class PassTimeValidator extends CommandValidator {
     private static final int MIN_MONTHS = 1;
     private static final int MAX_MONTHS = 60;
 
+
     @Override
     public boolean validate(String command) {
         String[] parts = command.split(" ");

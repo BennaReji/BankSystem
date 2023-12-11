@@ -98,4 +98,9 @@ public class TransferValidatorTest {
         assertFalse(transferValidator.validate("transfer 12345678 12345888 500"));
     }
 
+    @Test
+    void invalid_to_transfer_between_the_same_account() {
+        assertFalse(transferValidator.validate("transfer 12345678 12345678 300"));
+    }
+
 }

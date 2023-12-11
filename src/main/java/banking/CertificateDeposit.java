@@ -2,8 +2,10 @@ package banking;
 
 public class CertificateDeposit extends Account {
 
+
     public CertificateDeposit(String id, double apr, double initialBalance) {
         super(id, apr);
+
         if (initialBalance >= 1000) {
             deposit(initialBalance);
         }
@@ -19,6 +21,7 @@ public class CertificateDeposit extends Account {
         return false;
     }
 
+
     @Override
     public boolean withdrawRange(double amount) {
         if (amount <= getBalance()) {
@@ -26,4 +29,20 @@ public class CertificateDeposit extends Account {
         }
         return false;
     }
+
+    @Override
+    public double calculateInterest(double balance, double monthlyAPR, Account account) {
+        double totalInterest = 0;
+        for (int i = 0; i < 4; i++) {
+            totalInterest += balance * monthlyAPR;
+        }
+        return totalInterest;
+    }
+
+    @Override
+    public String getAccountType() {
+        return "Cd";
+    }
+
+
 }

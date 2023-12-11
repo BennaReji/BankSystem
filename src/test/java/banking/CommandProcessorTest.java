@@ -95,4 +95,15 @@ public class CommandProcessorTest {
         assertEquals(400, bank.getAccounts().get("12345679").getBalance());
     }
 
+    @Test
+    void check_if_withdraw_can_not_happen_twice_for_savings_within_one_month() {
+        commandProcessor.processCommand("create savings 12345679 1.0");
+        commandProcessor.processCommand("deposit 12345679 1000");
+        commandProcessor.processCommand("pass 1");
+        commandProcessor.processCommand("withdraw 12345679 200");
+        commandProcessor.processCommand("withdraw 12345679 200");
+
+    }
+
+
 }

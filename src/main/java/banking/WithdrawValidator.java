@@ -23,7 +23,14 @@ public class WithdrawValidator extends CommandValidator {
             return false;
         }
 
+
         Account account = bank.getAccounts().get(idNumber);
+
+        if (account.getAccountType().toLowerCase().equals("cd")) {
+            if (account.getAge() < 12) {
+                return false;
+            }
+        }
         double amount = Double.parseDouble(withdrawAmount);
 
         if (amount < 0) {
