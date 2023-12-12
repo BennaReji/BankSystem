@@ -18,6 +18,11 @@ public class Savings extends Account {
     }
 
     @Override
+    public int getWithdrawalCount() {
+        return withdrawalCount;
+    }
+
+    @Override
     public boolean canDeposit() {
         return true;
     }

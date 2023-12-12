@@ -103,4 +103,48 @@ public class TransferValidatorTest {
         assertFalse(transferValidator.validate("transfer 12345678 12345678 300"));
     }
 
+    @Test
+    void invalid_command_length() {
+        assertFalse(transferValidator.validate("invalid"));
+    }
+
+    @Test
+    void invalid_command_word() {
+        assertFalse(transferValidator.validate("transfers 12345678 12345777 400"));
+    }
+
+    @Test
+    void invalid_accounts_null() {
+        assertFalse(transferValidator.validate("transfer 12345778 12345787 400"));
+    }
+
+    @Test
+    void testIsCheckingAccount() {
+        Checking checking = new Checking("12345678", 1.0);
+        Savings savings = new Savings("12345679", 2.0);
+
+        assertTrue(transferValidator.isCheckingAccount(checking));
+        assertFalse(transferValidator.isCheckingAccount(savings));
+    }
+
+    @Test
+    void testIsSavingsAccount() {
+        Checking checking = new Checking("12345678", 1.0);
+        Savings savings = new Savings("12345679", 2.0);
+
+        assertFalse(transferValidator.isSavingsAccount(checking));
+        assertTrue(transferValidator.isSavingsAccount(savings));
+    }
+
+    @Test
+    void transfer_zero_amount() {
+        assertFalse(transferValidator.validate("transfer 12345678 12345777 0"));
+    }
+
+    @Test
+    void transfer_negative_amount() {
+        assertFalse(transferValidator.validate("transfer 12345678 12345777 -100"));
+    }
+
+
 }

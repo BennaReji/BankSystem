@@ -8,7 +8,7 @@ public class CommandValidator {
 
     public CommandValidator(Bank bank) {
         this.bank = bank;
-        commandValidatorMap = new HashMap<String, CommandValidator>();
+        commandValidatorMap = new HashMap<>();
         commandValidatorMap.put("create", new AccountValidator(bank));
         commandValidatorMap.put("deposit", new DepositValidator(bank));
         commandValidatorMap.put("withdraw", new WithdrawValidator(bank));

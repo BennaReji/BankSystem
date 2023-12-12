@@ -12,6 +12,7 @@ public class AccountTest {
     public static final String ID_2 = "12345679";
     public static final double APR = 3.5;
     public static final double INITIAL_BALANCE = 1000;
+
     Account cd;
     Account checking;
 
@@ -69,10 +70,39 @@ public class AccountTest {
         assertEquals(APR, aprValue);
     }
 
+
     @Test
     public void unique_id() {
         String idNum = cd.getId();
         assertEquals(ID, idNum);
     }
+
+    @Test
+    public void verify_account_type_for_cd() {
+        String accountType = cd.getAccountType();
+        assertEquals("Cd", accountType);
+    }
+
+    @Test
+    public void check_accountAge_increment_correctly_for_cd() {
+        cd.addAge(12);
+        int age = cd.getAge();
+        assertEquals(12, age);
+    }
+
+    @Test
+    public void deposit_zero_amount_should_not_change_balance() {
+        cd.deposit(0);
+        double balance = cd.getBalance();
+        assertEquals(INITIAL_BALANCE, balance);
+    }
+
+    @Test
+    public void withdraw_more_than_balance_balance_should_remain_unchanged() {
+        cd.withdraw(INITIAL_BALANCE + 100);
+        double balance = cd.getBalance();
+        assertEquals(0, balance);
+    }
+
 
 }

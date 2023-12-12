@@ -29,8 +29,6 @@ public class MasterControl {
         Bank bank = commandProcessor.getBank();
         storeCommands.addOpenAccount(bank);
         return storeCommands.getOutputString();
-
-
     }
 
 }

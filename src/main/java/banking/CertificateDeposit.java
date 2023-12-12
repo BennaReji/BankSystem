@@ -1,6 +1,7 @@
 package banking;
 
 public class CertificateDeposit extends Account {
+    private int withdrawalCount;
 
 
     public CertificateDeposit(String id, double apr, double initialBalance) {
@@ -37,6 +38,13 @@ public class CertificateDeposit extends Account {
             totalInterest += balance * monthlyAPR;
         }
         return totalInterest;
+    }
+
+    @Override
+    public int getWithdrawalCount() {
+        return withdrawalCount = 2;
+
+
     }
 
     @Override

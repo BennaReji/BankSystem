@@ -23,10 +23,7 @@ public class PassTimeProcessor {
 
             }
             resetWithdrawalCountForSavings();
-
-
         }
-
     }
 
     private void handleMinimumBalanceFee(Account account) {

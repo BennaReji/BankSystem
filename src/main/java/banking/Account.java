@@ -72,4 +72,6 @@ public abstract class Account {
 
 
     public abstract double calculateInterest(double balance, double monthlyAPR, Account account);
+
+    public abstract int getWithdrawalCount();
 }

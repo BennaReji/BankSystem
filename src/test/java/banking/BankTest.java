@@ -3,8 +3,7 @@ package banking;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class BankTest {
     public static final double DEPOSIT = 30;
@@ -84,6 +83,35 @@ public class BankTest {
         bank.getAccounts().get(ID).withdraw(WITHDRAW);
 
         assertEquals(10, bank.getAccounts().get(ID).getBalance());
+    }
+
+    @Test
+    void close_existing_account() {
+        bank.addAccount(account1);
+        boolean closed = bank.closeAccount(ID);
+        assertTrue(closed);
+        assertFalse(bank.checkIdExists(ID));
+    }
+
+    @Test
+    void close_non_existing_account() {
+        boolean closed = bank.closeAccount("NonExistingID");
+        assertFalse(closed);
+    }
+
+    @Test
+    void close_account_check_list_of_ids() {
+        bank.addAccount(account1);
+        bank.closeAccount(ID);
+        assertFalse(bank.getListOfAccountId().contains(ID));
+    }
+
+    @Test
+    void close_account_multiple_times() {
+        bank.addAccount(account1);
+        bank.closeAccount(ID);
+        boolean closedSecondTime = bank.closeAccount(ID);
+        assertFalse(closedSecondTime);
     }
 
 

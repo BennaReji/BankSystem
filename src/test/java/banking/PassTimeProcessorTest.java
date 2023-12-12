@@ -4,6 +4,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 public class PassTimeProcessorTest {
 
@@ -77,5 +78,43 @@ public class PassTimeProcessorTest {
         assertEquals(2028.098, bank.getAccounts().get("12345699").getBalance(), 0.01);
     }
 
+    @Test
+    void test_account_age_after_passing_time() {
+
+        passTimeProcessor.passTime(3);
+        assertEquals(3, bank.getAccounts().get("12345678").getAge());
+    }
+
+    @Test
+    void test_reset_withdrawal_count_for_savings() {
+        Account savingsAccount = new Savings("12345677", 2.0);
+        Account checkingAccount = new Checking("12345678", 2.0);
+        Account cdAccount = new CertificateDeposit("12345679", 2.0, 2000);
+
+        bank.addAccount(savingsAccount);
+        bank.addAccount(checkingAccount);
+        bank.addAccount(cdAccount);
+
+        passTimeProcessor.passTime(1);
+
+
+        assertEquals(0, savingsAccount.getWithdrawalCount());
+        assertNotEquals(0, checkingAccount.getWithdrawalCount());
+        assertNotEquals(0, cdAccount.getWithdrawalCount());
+    }
+
+    @Test
+    void test_reset_withdrawal_count_for_savings_with_no_savings_account() {
+
+        Account checkingAccount = new Checking("12345678", 2.0);
+        Account cdAccount = new CertificateDeposit("12345679", 2.0, 2000);
+
+        bank.addAccount(checkingAccount);
+        bank.addAccount(cdAccount);
+
+        passTimeProcessor.passTime(1);
+        assertNotEquals(0, checkingAccount.getWithdrawalCount());
+        assertNotEquals(0, cdAccount.getWithdrawalCount());
+    }
 
 }

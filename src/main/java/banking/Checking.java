@@ -1,6 +1,8 @@
 package banking;
 
 public class Checking extends Account {
+    private int withdrawalCount;
+
     public Checking(String id, double apr) {
         super(id, apr);
     }
@@ -30,4 +32,13 @@ public class Checking extends Account {
     public String getAccountType() {
         return "Checking";
     }
+
+    @Override
+    public int getWithdrawalCount() {
+        return withdrawalCount = 2;
+    }
+
+
 }
+
+

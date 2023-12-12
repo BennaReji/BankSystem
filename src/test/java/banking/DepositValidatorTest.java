@@ -61,4 +61,23 @@ public class DepositValidatorTest {
         assertTrue(actual);
     }
 
+    @Test
+    void invalid_account_number() {
+        boolean actual = depositValidator.validate("deposit 1234abc 100");
+        assertFalse(actual);
+    }
+
+    @Test
+    void non_existent_id() {
+        boolean actual = depositValidator.validate("deposit 23456789 100");
+        assertFalse(actual);
+    }
+
+    @Test
+    void non_numeric_deposit_amount() {
+        boolean actual = depositValidator.validate("deposit 12345678 ajsjsj");
+        assertFalse(actual);
+    }
+
+
 }

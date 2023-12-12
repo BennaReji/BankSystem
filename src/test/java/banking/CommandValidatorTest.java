@@ -43,4 +43,24 @@ public class CommandValidatorTest {
         boolean actual = commandValidator.validate("12345678 100");
         assertFalse(actual);
     }
+
+    @Test
+    void invalid_no_input() {
+        boolean actual = commandValidator.validate("");
+        assertFalse(actual);
+    }
+
+    @Test
+    void invalid_account_number_pattern() {
+        boolean actual = commandValidator.isValidAccountNumber("12345");
+        assertFalse(actual);
+    }
+
+    @Test
+    void invalid_non_numeric_account_number_pattern() {
+        boolean actual = commandValidator.isValidAccountNumber("ajdnbopo");
+        assertFalse(actual);
+    }
+
+
 }

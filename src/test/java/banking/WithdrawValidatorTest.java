@@ -51,7 +51,7 @@ public class WithdrawValidatorTest {
     }
 
     @Test
-    void check_negative_amount_can_not_be_withdrawed() {
+    void check_negative_amount_can_not_be_withdrawd() {
         boolean actual = withdrawValidator.validate("withdraw 12345678 -1");
         assertFalse(actual);
     }
@@ -79,5 +79,26 @@ public class WithdrawValidatorTest {
         assertTrue(withdrawValidator.validate("withdraw 12345679 200"));
         assertFalse(withdrawValidator.validate("withdraw 12345679 200"));
     }
+
+    @Test
+    void invalid_command_length() {
+        assertFalse(withdrawValidator.validate("command"));
+    }
+
+    @Test
+    void invalid_command_keyword() {
+        assertFalse(withdrawValidator.validate("transfer 12345678 100"));
+    }
+
+    @Test
+    void valid_command_with_valid_account() {
+        assertTrue(withdrawValidator.validate("withdraw 12345678 100"));
+    }
+
+    @Test
+    void valid_command_with_invalid_account() {
+        assertFalse(withdrawValidator.validate("withdraw 34567891 100"));
+    }
+
 }
 

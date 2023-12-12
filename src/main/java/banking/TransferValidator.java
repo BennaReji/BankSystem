@@ -55,11 +55,11 @@ public class TransferValidator extends CommandValidator {
         return false;
     }
 
-    private boolean isCheckingAccount(Account account) {
+    boolean isCheckingAccount(Account account) {
         return account.getClass() == Checking.class;
     }
 
-    private boolean isSavingsAccount(Account account) {
+    boolean isSavingsAccount(Account account) {
         return account.getClass() == Savings.class;
     }
 

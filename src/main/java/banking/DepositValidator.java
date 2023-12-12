@@ -35,22 +35,24 @@ public class DepositValidator extends CommandValidator {
         Account account = bank.getAccounts().get(idNumber);
 
         if (account.canDeposit()) {
-            double amount = Double.parseDouble(depositAmount);
+            try {
+                double amount = Double.parseDouble(depositAmount);
 
-            if (amount < 0) {
+                if (amount < 0 || Double.isNaN(amount)) {
+                    return false;
+                }
+
+                if (!account.canDepositAmount(amount)) {
+                    return false;
+                }
+
+                return true;
+            } catch (NumberFormatException e) {
                 return false;
             }
-
-            if (!account.canDepositAmount(amount)) {
-                return false;
-            }
-
-            return true;
         }
 
         return false;
     }
-
-
 }
 

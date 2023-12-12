@@ -51,21 +51,22 @@ public class AccountValidator extends CommandValidator {
 
 
     private boolean isValidAPR(String apr) {
-        double numberApr = Double.parseDouble(apr);
-        if (numberApr > 0 && numberApr <= 10.0) {
-            return true;
+        try {
+            double numberApr = Double.parseDouble(apr);
+            return (numberApr > 0 && numberApr <= 10.0);
+        } catch (NumberFormatException e) {
+            return false;
         }
-        return false;
     }
+
 
     private boolean isValidInitialBalance(String initialBalance) {
-        double numberInitialBalance = Double.parseDouble(initialBalance);
-        if (numberInitialBalance > 1000 && numberInitialBalance <= 10000) {
-            return true;
+        try {
+            double numberInitialBalance = Double.parseDouble(initialBalance);
+            return (numberInitialBalance >= 1000 && numberInitialBalance <= 10000);
+        } catch (NumberFormatException e) {
+            return false;
         }
-        return false;
     }
-
-
 }
 
