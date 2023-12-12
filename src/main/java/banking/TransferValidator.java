@@ -46,9 +46,8 @@ public class TransferValidator extends CommandValidator {
             return transferWithinAccounts(fromAccountId, toAccountId, transferAmount);
         } else if (isSavingsAccount(fromAccount) && isSavingsAccount(toAccount)) {
             return transferWithinAccounts(fromAccountId, toAccountId, transferAmount);
-        } else if (isCheckingAccount(fromAccount) && isSavingsAccount(toAccount)) {
-            return transferWithinAccounts(fromAccountId, toAccountId, transferAmount);
-        } else if (isSavingsAccount(fromAccount) && isCheckingAccount(toAccount)) {
+        } else if ((isCheckingAccount(fromAccount) && isSavingsAccount(toAccount)) ||
+                (isSavingsAccount(fromAccount) && isCheckingAccount(toAccount))) {
             return transferWithinAccounts(fromAccountId, toAccountId, transferAmount);
         }
 

@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 public class CommandValidator {
     HashMap<String, CommandValidator> commandValidatorMap;
-    private Bank bank;
+    Bank bank;
 
     public CommandValidator(Bank bank) {
         this.bank = bank;

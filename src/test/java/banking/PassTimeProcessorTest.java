@@ -117,4 +117,25 @@ public class PassTimeProcessorTest {
         assertNotEquals(0, cdAccount.getWithdrawalCount());
     }
 
+    @Test
+    void test_reset_withdrawal_count_for_savings_after_passing_time() {
+        Savings savingsAccount = new Savings("12345677", 2.0);
+        Checking checkingAccount = new Checking("12345678", 2.0);
+        CertificateDeposit cdAccount = new CertificateDeposit("12345679", 2.0, 2000);
+
+        bank.addAccount(savingsAccount);
+        bank.addAccount(checkingAccount);
+        bank.addAccount(cdAccount);
+
+        savingsAccount.withdraw(100);
+        savingsAccount.withdraw(50);
+
+        passTimeProcessor.passTime(1);
+
+        assertEquals(0, savingsAccount.getWithdrawalCount());
+        assertNotEquals(0, checkingAccount.getWithdrawalCount());
+        assertNotEquals(0, cdAccount.getWithdrawalCount());
+    }
+
+
 }

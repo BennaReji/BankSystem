@@ -6,6 +6,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Output {
+    private Output() {
+        throw new IllegalStateException("Utility class");
+    }
 
     public static ArrayList<String> getOpenAccounts(Bank bank) {
         ArrayList<String> openAccounts = new ArrayList<>();

@@ -35,7 +35,8 @@ public class Checking extends Account {
 
     @Override
     public int getWithdrawalCount() {
-        return withdrawalCount = 2;
+        withdrawalCount = 2;
+        return withdrawalCount;
     }
 
 

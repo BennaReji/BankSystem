@@ -55,6 +55,8 @@ public class CommandProcessor {
                     throw new IllegalArgumentException("Missing initial balance for CD account creation");
                 }
                 break;
+            default:
+                throw new IllegalArgumentException("Invalid account type: " + accountType);
 
 
         }

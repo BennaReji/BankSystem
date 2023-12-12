@@ -3,8 +3,7 @@ package banking;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertFalse;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class SavingsTest {
     Savings savings;
@@ -26,8 +25,8 @@ public class SavingsTest {
     }
 
     @Test
-    public void test_withdraw_within_limit() {
-        assertTrue(savings.withdrawRange(500));
+    public void test_deposit_within_the_max_limit() {
+        assertTrue(savings.canDepositAmount(2500));
     }
 
     @Test
@@ -40,6 +39,21 @@ public class SavingsTest {
         assertTrue(savings.withdrawRange(500));
         assertFalse(savings.withdrawRange(500));
     }
+
+    @Test
+    public void test_withdraw_limit_amount() {
+        savings.withdrawRange(1000);
+        assertEquals(1, savings.getWithdrawalCount());
+    }
+
+    @Test
+    public void test_withdraw_max_limit_amount() {
+        assertTrue(savings.withdrawRange(1000));
+
+
+    }
+
+
 }
 
 

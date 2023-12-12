@@ -59,6 +59,18 @@ public class CertificateDepositTest {
         assertEquals(2, getWithdrawal);
     }
 
+    @Test
+    void withdraw_amount_equal_to_balance() {
+        CertificateDeposit cd = new CertificateDeposit("12345678", 2.0, 1000);
+        assertTrue(cd.withdrawRange(1000));
+    }
+
+    @Test
+    void withdraw_amount_greater_than_balance() {
+        CertificateDeposit cd = new CertificateDeposit("12345678", 2.0, 1500);
+        assertFalse(cd.withdrawRange(2000));
+    }
+
 
 }
 
