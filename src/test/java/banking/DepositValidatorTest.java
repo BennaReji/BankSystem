@@ -1,3 +1,5 @@
+package banking;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -5,11 +7,16 @@ import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class DepositValidatorTest {
+
     DepositValidator depositValidator;
+    Bank bank;
 
     @BeforeEach
     void setUp() {
-        depositValidator = new DepositValidator();
+        bank = new Bank();
+        Checking checking = new Checking("12345678", 2.0);
+        bank.addAccount(checking);
+        depositValidator = new DepositValidator(bank);
     }
 
     @Test
@@ -20,7 +27,7 @@ public class DepositValidatorTest {
 
     @Test
     void deposit_above_maximum() {
-        boolean actual = depositValidator.validate("deposit 12345678 30001");
+        boolean actual = depositValidator.validate("deposit 12345678 1001");
         assertFalse(actual);
     }
 
@@ -53,5 +60,24 @@ public class DepositValidatorTest {
         boolean actual = depositValidator.validate("Deposit 12345678 100");
         assertTrue(actual);
     }
+
+    @Test
+    void invalid_account_number() {
+        boolean actual = depositValidator.validate("deposit 1234abc 100");
+        assertFalse(actual);
+    }
+
+    @Test
+    void non_existent_id() {
+        boolean actual = depositValidator.validate("deposit 23456789 100");
+        assertFalse(actual);
+    }
+
+    @Test
+    void non_numeric_deposit_amount() {
+        boolean actual = depositValidator.validate("deposit 12345678 ajsjsj");
+        assertFalse(actual);
+    }
+
 
 }

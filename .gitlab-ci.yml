@@ -11,7 +11,7 @@ before_script:
 
 build:
   stage: build
-  script:
+  script: 
     - gradle --build-cache assemble
     - echo $CI_BUILD_PATH
     - echo $CI_PROJECT_DIR
@@ -50,6 +50,17 @@ code_quality_html:
   artifacts:
     expose_as: 'Code Quality Report HTML'
     paths: [ gl-code-quality-report.html ]
+
+mutation-coverage:
+  stage: test
+  script:
+    - 'gradle test pitest'
+    - 'tar -czvf build/reports/pitest.tar.gz build/reports/pitest/'
+  artifacts:
+    when: always
+    expose_as: 'Pitest Report'
+    paths:
+      - build/reports/pitest.tar.gz
 
 coverage-jdk11:
   stage: deploy

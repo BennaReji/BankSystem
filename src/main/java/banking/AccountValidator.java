@@ -1,4 +1,13 @@
-public class AccountValidator {
+package banking;
+
+public class AccountValidator extends CommandValidator {
+    private Bank bank;
+
+    public AccountValidator(Bank bank) {
+        this.bank = bank;
+    }
+
+    @Override
     public boolean validate(String command) {
         String[] parts = command.split(" ");
         if (parts.length < 4) {
@@ -18,7 +27,13 @@ public class AccountValidator {
         if (!isValidAccountType(accountType)) {
             return false;
         }
+        if (bank.checkIdExists(idNumber)) {
+            return false;
+        }
         if (accountType.equals("cd") && parts.length < 5) {
+            return false;
+        }
+        if ((accountType.equals("checking") || accountType.equals("savings")) && parts.length > 4) {
             return false;
         }
 
@@ -28,32 +43,30 @@ public class AccountValidator {
 
         if (!isValidAccountNumber(idNumber)) {
             return false;
+        } else {
+            return isValidAPR(apr);
         }
 
-        return isValidAPR(apr);
     }
 
-    private boolean isValidAccountType(String accountType) {
-        return accountType.equals("cd") || accountType.equals("checking") || accountType.equals("savings");
-    }
-
-    private boolean isValidAccountNumber(String idNumber) {
-        return idNumber.matches("\\d{8}");
-    }
 
     private boolean isValidAPR(String apr) {
-        double numberApr = Double.parseDouble(apr);
-        if (numberApr >= 1.0 && numberApr <= 10.0) {
-            return true;
+        try {
+            double numberApr = Double.parseDouble(apr);
+            return (numberApr > 0 && numberApr <= 10.0);
+        } catch (NumberFormatException e) {
+            return false;
         }
-        return false;
     }
 
+
     private boolean isValidInitialBalance(String initialBalance) {
-        double numberInitialBalance = Double.parseDouble(initialBalance);
-        if (numberInitialBalance > 1000 && numberInitialBalance <= 10000) {
-            return true;
+        try {
+            double numberInitialBalance = Double.parseDouble(initialBalance);
+            return (numberInitialBalance >= 1000 && numberInitialBalance <= 10000);
+        } catch (NumberFormatException e) {
+            return false;
         }
-        return false;
     }
 }
+
